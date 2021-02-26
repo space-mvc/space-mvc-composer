@@ -20,8 +20,8 @@ class Space
         $this->di['env'] = new Env();
         $this->di['config'] = new Config();
         $this->di['log'] = new Log();
-        $this->di['orm'] = new Orm();
-//        $this->di['request'] = new Request();
+        $this->di['db'] = new Database();
+        $this->di['request'] = new Request();
 //        $this->di['router'] = new Router($this->di['request']);
 //        $this->di['cache'] = new Cache();
 //        $this->di['session'] = new Session();
@@ -67,6 +67,24 @@ class Space
     public function getLog() : Log
     {
         return $this->di['log'];
+    }
+
+    /**
+     * getDb
+     * @return Database
+     */
+    public function getDb() : Database
+    {
+        return $this->di['db'];
+    }
+
+    /**
+     * getRequest
+     * @return Request
+     */
+    public function getRequest() : Request
+    {
+        return $this->di['request'];
     }
     
 
