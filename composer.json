@@ -1,0 +1,46 @@
+{
+    "name": "space-mvc/space-mvc-composer",
+    "type": "library",
+    "description": "This is the space mvc framework",
+    "keywords": [
+        ":vendor",
+        ":package_name"
+    ],
+    "homepage": "https://github.com/space-mvc/space-mvc-composer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Space MVC",
+            "email": "space-mvc@gmail.com",
+            "homepage": "http://space-mvc.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "~7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SpaceMvc\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SpaceMvc\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
