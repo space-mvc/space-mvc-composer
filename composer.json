@@ -6,6 +6,7 @@
         ":vendor",
         ":package_name"
     ],
+    "version" : "0.0.1",
     "homepage": "https://github.com/space-mvc/space-mvc-composer",
     "license": "MIT",
     "authors": [
