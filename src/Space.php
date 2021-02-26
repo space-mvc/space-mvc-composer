@@ -24,8 +24,8 @@ class Space
         $this->di['request'] = new Request();
         $this->di['router'] = new Router($this->di['request']);
         $this->di['cache'] = new Cache();
-//        $this->di['session'] = new Session();
-//        $this->di['exception'] = new Exception();
+        $this->di['session'] = new Session();
+        $this->di['exception'] = new Exception();
 //        $this->di['layout'] = new Layout();
 //        $this->di['mail'] = new Mail();
 //        $this->di['asset'] = new Asset();
@@ -103,6 +103,24 @@ class Space
     public function getCache() : Cache
     {
         return $this->di['cache'];
+    }
+
+    /**
+     * getSession
+     * @return Session
+     */
+    public function getSession() : Session
+    {
+        return $this->di['session'];
+    }
+
+    /**
+     * getException
+     * @return Exception
+     */
+    public function getException() : Exception
+    {
+        return $this->di['exception'];
     }
     
 
