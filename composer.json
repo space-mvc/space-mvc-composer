@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SpaceMvc\\": "src"
+            "SpaceMvc\\Framework\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SpaceMvc\\Tests\\": "tests"
+            "SpaceMvc\\Framework\\Tests\\": "tests"
         }
     },
     "scripts": {
