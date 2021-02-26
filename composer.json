@@ -1,6 +1,6 @@
 {
     "name": "space-mvc/space-mvc-composer",
-    "type": "library",
+    "type": "project",
     "description": "This is the space mvc framework",
     "keywords": [
         ":vendor",
