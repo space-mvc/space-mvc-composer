@@ -18,11 +18,11 @@
         }
     ],
     "require": {
-        "php" : "~7.2"
+        "php" : "~7.2",
+        "php-activerecord/php-activerecord": "dev-master"
     },
     "require-dev": {
-        "phpunit/phpunit" : ">=8.0",
-        "php-activerecord/php-activerecord": "dev-master"
+        "phpunit/phpunit" : ">=8.0"
     },
     "autoload": {
         "psr-4": {
