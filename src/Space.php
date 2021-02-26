@@ -23,7 +23,7 @@ class Space
         $this->di['db'] = new Database();
         $this->di['request'] = new Request();
         $this->di['router'] = new Router($this->di['request']);
-//        $this->di['cache'] = new Cache();
+        $this->di['cache'] = new Cache();
 //        $this->di['session'] = new Session();
 //        $this->di['exception'] = new Exception();
 //        $this->di['layout'] = new Layout();
@@ -94,6 +94,15 @@ class Space
     public function getRouter() : Router
     {
         return $this->di['router'];
+    }
+
+    /**
+     * getCache
+     * @return Cache
+     */
+    public function getCache() : Cache
+    {
+        return $this->di['cache'];
     }
     
 

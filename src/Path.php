@@ -15,7 +15,7 @@ class Path
      */
     public function get($key = false)
     {
-        $paths = require_once pathBase().'/config/paths.php';
+        $paths = require pathBase().'/config/paths.php';
 
         if(empty($key)) {
             return $paths;

@@ -40,15 +40,15 @@ class Config
      * @param string $filename
      * @return array
      */
-    public function getFile($filename = '') : array
+    public function getFile(string $filename = '')
     {
         $filename = str_replace('.', '/', $filename);
         $file = realpath(pathBase().'/config/'.$filename.'.php');
 
-        if(!file_exists($filename)) {
-            throw new \Exception('file not found - '.$filename);
+        if(!file_exists($file)) {
+            throw new \Exception('file not found - config/'.$filename.'.php');
         }
 
-        return require_once $filename;
+        return require $file;
     }
 }

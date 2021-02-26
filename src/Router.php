@@ -40,7 +40,7 @@ class Router
         if(!empty($files)) {
             foreach($files as $file) {
                 if(!in_array($file, ['.', '..'])) {
-                    $this->routes = array_merge($this->routes, require_once $path.'/'.$file);
+                    $this->routes = array_merge($this->routes, require $path.'/'.$file);
                 }
             }
         }
