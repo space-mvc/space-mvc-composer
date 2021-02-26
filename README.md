@@ -1,1 +1,1 @@
-# space-mvc-composer
+# space-mvc-library
