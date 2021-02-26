@@ -19,7 +19,7 @@
     ],
     "require": {
         "php" : "~7.2",
-        "php-activerecord/php-activerecord": "dev-master"
+        "php-activerecord/php-activerecord": "master"
     },
     "require-dev": {
         "phpunit/phpunit" : ">=8.0"
