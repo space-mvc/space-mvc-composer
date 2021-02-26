@@ -1,13 +1,13 @@
 {
-    "name": "space-mvc/space-mvc-composer",
+    "name": "space-mvc/space-mvc-library",
     "type": "project",
     "description": "This is the space mvc framework",
     "keywords": [
-        ":vendor",
-        ":package_name"
+        "Space Mvc",
+        "Library"
     ],
     "version" : "0.0.1",
-    "homepage": "https://github.com/space-mvc/space-mvc-composer",
+    "homepage": "https://github.com/space-mvc/space-mvc-library",
     "license": "MIT",
     "authors": [
         {
