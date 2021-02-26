@@ -1,13 +1,13 @@
 {
-    "name": "space-mvc/space-mvc-library",
+    "name": "space-mvc/space-mvc-framework",
     "type": "project",
     "description": "This is the space mvc framework",
     "keywords": [
         "Space Mvc",
-        "Library"
+        "Framework"
     ],
     "version" : "0.0.1",
-    "homepage": "https://github.com/space-mvc/space-mvc-library",
+    "homepage": "https://github.com/space-mvc/space-mvc-framework",
     "license": "MIT",
     "authors": [
         {
