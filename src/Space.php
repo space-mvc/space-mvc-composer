@@ -16,10 +16,11 @@ class Space
      */
     public function __construct()
     {
+        $this->di['path'] = new Path();
         $this->di['env'] = new Env();
-//        $this->di['config'] = new Config();
-//        $this->di['log'] = new Log();
-//        $this->di['orm'] = new Orm();
+        $this->di['config'] = new Config();
+        $this->di['log'] = new Log();
+        $this->di['orm'] = new Orm();
 //        $this->di['request'] = new Request();
 //        $this->di['router'] = new Router($this->di['request']);
 //        $this->di['cache'] = new Cache();
@@ -32,27 +33,45 @@ class Space
 //        $this->di['response'] = new Response($this->di['controller']->getLayout()->getResponseBody());
     }
 
-//    /**
-//     * set.
-//     *
-//     * @param $className
-//     * @param $classObject
-//     */
-//    public function set($className, $classObject)
-//    {
-//        $this->di[$className] = $classObject;
-//    }
+    /**
+     * getPath
+     * @return Path
+     */
+    public function getPath() : Path
+    {
+        return $this->di['path'];
+    }
+
+    /**
+     * getEnv
+     * @return Env
+     */
+    public function getEnv() : Env
+    {
+        return $this->di['env'];
+    }
+
+    /**
+     * getConfig
+     * @return Config
+     */
+    public function getConfig() : Config
+    {
+        return $this->di['config'];
+    }
+
+    /**
+     * getLog
+     * @return Log
+     */
+    public function getLog() : Log
+    {
+        return $this->di['log'];
+    }
+    
+
 //
-//    /**
-//     * get.
-//     *
-//     * @param $className
-//     * @return mixed
-//     */
-//    public function get($className)
-//    {
-//        return $this->di[$className];
-//    }
+
 //
 //    /**
 //     * init.
@@ -67,22 +86,7 @@ class Space
 //        }
 //    }
 //
-//    /**
-//     * dump.
-//     *
-//     * @param array $data
-//     * @param bool $exit
-//     */
-//    public function dump($data = [], $exit = false)
-//    {
-//        print '<pre>';
-//        print_r($data);
-//        print '</pre>';
-//
-//        if($exit) {
-//            exit;
-//        }
-//    }
+
 //
 //    /**
 //     * asset.
