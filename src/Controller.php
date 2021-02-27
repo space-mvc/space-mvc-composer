@@ -9,19 +9,19 @@ namespace SpaceMvc\Framework;
 class Controller
 {
     /** @var Space $app */
-    private $app;
+    private Space $app;
 
     /** @var string $controllerName */
-    private $controllerName = 'App\Http\Frontend\ErrorController';
+    private string $controllerName = 'App\Http\Errors\Error404Controller';
 
     /** @var string $actionName */
-    private $actionName = 'error404';
+    private string $actionName = 'index';
 
     /** @var array $params */
-    private $params = [];
+    private array $params = [];
 
-    /** @var Layout $layout */
-    private $layout;
+    /** @var string $responseBody */
+    private string $responseBody = '';
 
     /**
      * Controller constructor.
@@ -48,28 +48,35 @@ class Controller
      */
     public function init()
     {
-        $x = new $this->controllerName;
-        dump($x, 1);
         if(!class_exists($this->controllerName)) {
             exception('controller class does not exist:'.$this->controllerName, 500);
         }
 
-//        $controller = new $controllerName($this->app);
-//
-//        $this->layout = $controller->getDi()->get('layout');
-//
-//        if(!method_exists($controller, $this->actionName)) {
-//            exception('action '.$this->actionName.'() not found in controller : '.$controllerName,500);
-//        }
-//
-//        $view = call_user_func_array(array($controller, $this->actionName), $this->params);
-//
-//        if($view instanceof View) {
-//            $this->layout->setView($view);
-//            $this->layout->init();
-//        } else {
-//            echo $view;
-//            exit;
-//        }
+        $controller = new $this->controllerName($this->app);
+
+        if(!method_exists($controller, $this->actionName)) {
+            exception('action '.$this->actionName.'() not found in controller : '.$controllerName,500);
+        }
+
+        $actionResponse = call_user_func_array(array($controller, $this->actionName), $this->params);
+
+        if($actionResponse instanceof View) {
+            $layoutName = $controller->getLayout();
+            $layout = new Layout($layoutName, $actionResponse, $this->params);
+            $layout->init();
+            $this->responseBody = $layout->getResponseBody();
+        } else {
+            echo $actionResponse;
+            exit;
+        }
+    }
+
+    /**
+     * getResponseBody
+     * @return string
+     */
+    public function getResponseBody() : string
+    {
+        return $this->responseBody;
     }
 }

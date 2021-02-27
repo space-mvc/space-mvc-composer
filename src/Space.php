@@ -30,16 +30,19 @@ class Space
         $this->app['asset'] = new Asset();
         $this->app['layout'] = new Layout('frontend', new View('frontend.index'));
 
-        $this->app['controller'] = (new Controller($this, $this->app['router']->getRoute()['controller'], $this->app['router']->getRoute()['action']));
+        $controllerName = !empty($this->app['router']->getRoute()['controller']) ? $this->app['router']->getRoute()['controller'] : null;
+        $actionName = !empty($this->app['router']->getRoute()['action']) ? $this->app['router']->getRoute()['action'] : null;
 
-        dump($this->app['controller'], 1);
+        if(empty($controllerName) || empty($actionName)) {
+            $controllerName = 'App\Http\Controllers\Errors\Error404Controller';
+            $actionName = 'index';
+        }
 
-        exit;
-
+        $this->app['controller'] = new Controller($this, $controllerName, $actionName);
         $this->app['mail'] = new Mail();
 
         if ($execute) {
-            echo $this->app['controller']->getLayout()->getResponseBody();
+            echo $this->app['controller']->getResponseBody();
             exit;
         }
 
