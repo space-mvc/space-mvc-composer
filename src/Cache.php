@@ -26,7 +26,7 @@ class Cache
         $config = config('app');
         $this->redis = new \Predis\Client([
             'scheme' => 'tcp',
-            'host'   => (int) $config['cache']['redis']['hostname'],
+            'host'   => $config['cache']['redis']['hostname'],
             'port'   => $config['cache']['redis']['port'],
         ]);
     }
