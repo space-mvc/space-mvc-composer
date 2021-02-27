@@ -9,13 +9,13 @@ namespace SpaceMvc\Framework;
 class Router
 {
     /** @var Request $request */
-    private $request;
+    private Request $request;
 
     /** @var array $routes */
-    private $routes = [];
+    private array $routes = [];
 
     /** @var array $route */
-    private $route = [];
+    private array $route = [];
 
     /**
      * Router constructor.

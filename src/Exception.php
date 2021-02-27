@@ -14,7 +14,7 @@ class Exception
      * @param int $code
      * @throws \Exception
      */
-    public function throw($message = "", $code = 0)
+    public function throw($message = "", $code = 0) : void
     {
         throw new \Exception($message, $code);
     }
@@ -25,7 +25,7 @@ class Exception
      * @param string $message
      * @param int $code
      */
-    public function throwJson($message = "", $code = 0)
+    public function throwJson($message = "", $code = 0) :void
     {
         echo json_encode([
             'exception' => [

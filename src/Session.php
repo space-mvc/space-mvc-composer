@@ -8,8 +8,8 @@ namespace SpaceMvc\Framework;
  */
 class Session
 {
-    /** @var $session */
-    protected $session;
+    /** @var array $session */
+    protected array $session;
 
     /**
      * Cache constructor.

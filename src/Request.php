@@ -9,16 +9,16 @@ namespace SpaceMvc\Framework;
 class Request
 {
     /** @var string $uri */
-    private $uri = '/';
+    private string $uri = '/';
 
     /** @var string $method */
-    private $method = 'get';
+    private string $method = 'get';
 
     /** @var array $get */
-    private $get = [];
+    private array $get = [];
 
     /** @var array $post */
-    private $post = [];
+    private array $post = [];
 
     /**
      * Request constructor.

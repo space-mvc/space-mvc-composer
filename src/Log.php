@@ -14,7 +14,7 @@ class Log
      * @param $data
      * @param string $filename
      */
-    public function write($data, $filename = 'app.log')
+    public function write($data, $filename = 'app.log') : void
     {
         $filename = path('log').'/'.$filename;
         $fh = fopen($filename, 'a') or die("can't open file");

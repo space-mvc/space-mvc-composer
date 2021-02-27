@@ -25,6 +25,7 @@ class Config
      * get
      * @param string | bool $key
      * @param null $default
+     * @return mixed
      */
     public function get($key = false, $default = null)
     {
@@ -40,7 +41,7 @@ class Config
      * @param string $filename
      * @return array
      */
-    public function getFile(string $filename = '')
+    public function getFile(string $filename = '') : array
     {
         $filename = str_replace('.', '/', $filename);
         $file = realpath(pathBase().'/config/'.$filename.'.php');

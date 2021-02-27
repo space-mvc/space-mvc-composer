@@ -9,13 +9,13 @@ namespace SpaceMvc\Framework;
 class Cache
 {
     /** @var Predis\Client $redis */
-    protected $redis;
+    protected \Predis\Client $redis;
 
     /** @var string $host */
-    protected $host = '127.0.0.1';
+    protected string $host = '127.0.0.1';
 
     /** @var int $port */
-    protected $port = 6379;
+    protected int $port = 6379;
 
     /**
      * Cache constructor.

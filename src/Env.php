@@ -9,7 +9,7 @@ namespace SpaceMvc\Framework;
 class Env
 {
     /** @var array $data */
-    private $data = [];
+    private array $data = [];
 
     /**
      * Environment constructor.
@@ -22,7 +22,7 @@ class Env
     /**
      * initData.
      */
-    public function initData()
+    public function initData() : void
     {
         $filename = pathBase().'/.env';
 
