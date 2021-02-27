@@ -38,6 +38,9 @@ class Env
                     $key = !empty($segments[0]) ? trim(strtoupper($segments[0])) : null;
                     $value = !empty($segments[1]) ? trim($segments[1]) : null;
 
+                    $value = str_replace('"', null, $value);
+                    $value = str_replace("'", null, $value);
+
                     if(!empty($key) && !empty($value)) {
 
                         switch(strtolower($value))

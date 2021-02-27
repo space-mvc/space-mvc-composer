@@ -8,14 +8,8 @@ namespace SpaceMvc\Framework;
  */
 class Cache
 {
-    /** @var Predis\Client $redis */
-    protected \Predis\Client $redis;
-
-    /** @var string $host */
-    protected string $host = '127.0.0.1';
-
-    /** @var int $port */
-    protected int $port = 6379;
+    /** @var \Redis $redis */
+    protected \Redis $redis;
 
     /**
      * Cache constructor.
@@ -23,12 +17,29 @@ class Cache
      */
     public function __construct()
     {
-        $config = config('app');
-        $this->redis = new \Predis\Client([
-            'scheme' => 'tcp',
-            'host'   => $config['cache']['redis']['hostname'],
-            'port'   => $config['cache']['redis']['port'],
-        ]);
+        $config = config('app')['cache']['redis'];
+
+        $this->redis = new \Redis();
+        $this->redis->connect('127.0.0.1', $config['port']);
+        $this->redis->select($config['database']);
+    }
+
+    /**
+     * setDb
+     * @param int $database
+     */
+    public function setDb($database = 1)
+    {
+        $this->redis->select($database);
+    }
+
+    /**
+     * getRedis
+     * @return \Redis
+     */
+    public function getRedis() : \Redis
+    {
+        return $this->redis;
     }
 
     /**
@@ -51,5 +62,14 @@ class Cache
     public function get($key)
     {
         return json_decode($this->redis->get($key));
+    }
+
+    /**
+     * flushDb
+     * @return bool
+     */
+    public function flushDb()
+    {
+        return $this->redis->flushDB();
     }
 }
