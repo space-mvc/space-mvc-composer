@@ -65,6 +65,15 @@ class Cache
     }
 
     /**
+     * delete
+     * @param string $key
+     */
+    public function delete(string $key) : int
+    {
+        return $this->redis->del($key);
+    }
+
+    /**
      * flushDb
      * @return bool
      */
