@@ -32,25 +32,25 @@ class Mail
     public function __construct()
     {
         $this->body = "
-			<html>
-				<head>
-					<title>HTML email</title>
-				</head>
-				<body>
-					<p>This email contains HTML Tags!</p>
-					<table>
-						<tr>
-							<th>First name</th>
-							<th>Last name</th>
-						</tr>
-						<tr>
-							<td>John</td>
-							<td>Doe</td>
-						</tr>
-					</table>
-				</body>
-			</html>
-		";
+        <html>
+            <head>
+                <title>HTML email</title>
+            </head>
+            <body>
+                <p>This email contains HTML Tags!</p>
+                <table>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                    </tr>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                    </tr>
+		</table>
+	    </body>
+        </html>
+        ";
     }
 
     /**
