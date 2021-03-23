@@ -11,18 +11,18 @@ use SpaceMvc\Framework\Abstract\EnvAbstract;
 class Env extends EnvAbstract
 {
     /**
-     * File constructor.
+     * Env constructor.
      */
     public function __construct()
     {
-        $this->loadData();
+        $this->setEnv();
     }
 
     /**
-     * loadData
+     * setEnv
      * @return $this
      */
-    public function loadData() : self
+    public function setEnv() : self
     {
         $filename = pathBase().'/.env';
 
@@ -54,7 +54,7 @@ class Env extends EnvAbstract
                                 break;
                         }
 
-                        $this->data[$key] = $value;
+                        $this->env[$key] = $value;
                     }
                 }
 
@@ -66,20 +66,19 @@ class Env extends EnvAbstract
     }
 
     /**
-     * get.
-     *
-     * @param null $key
-     * @param null $default
+     * get
+     * @param string|null $key
+     * @param mixed|null $default
      * @return mixed
      */
-    public function get($key = null, $default = null) : mixed
+    public function get(string $key = null, mixed $default = null) : mixed
     {
         $key = strtoupper($key);
 
         if(!$key) {
-            return $this->data;
+            return $this->env;
         } else {
-            return !empty($this->data[$key]) ? $this->data[$key] : $default;
+            return !empty($this->env[$key]) ? $this->env[$key] : $default;
         }
     }
 }

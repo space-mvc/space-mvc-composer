@@ -8,20 +8,20 @@ namespace SpaceMvc\Framework\Abstract;
  */
 abstract class EnvAbstract
 {
-    /** @var array $data */
-    protected array $data = [];
+    /** @var array $env */
+    protected array $env = [];
 
     /**
-     * loadData
+     * setEnv
      * @return $this
      */
-    abstract public function loadData() : self;
+    abstract public function setEnv() : self;
 
     /**
      * get
-     * @param null $key
-     * @param null $default
+     * @param string $key
+     * @param mixed|null $default
      * @return mixed
      */
-    abstract public function get($key = null, $default = null) : mixed;
+    abstract public function get(string $key = null, mixed $default = null) : mixed;
 }
