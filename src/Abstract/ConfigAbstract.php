@@ -8,14 +8,15 @@ namespace SpaceMvc\Framework\Abstract;
  */
 abstract class ConfigAbstract
 {
-    /** @var array $data */
-    protected array $data = [];
+    /** @var array $config */
+    protected array $config = [];
 
     /**
-     * loadData
+     * setConfig
+     * @param string $type
      * @return $this
      */
-    abstract public function loadData() : self;
+    abstract public function setConfig(string $type) : self;
 
     /**
      * get

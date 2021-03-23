@@ -15,16 +15,16 @@ class Config extends ConfigAbstract
      */
     public function __construct()
     {
-        $this->loadData();
+        $this->setConfig();
     }
 
     /**
-     * loadData
+     * loadConfig
      * @param string $filename
      * @return $this
      * @throws \Exception
      */
-    public function loadData(string $filename = 'app') : self
+    public function setConfig(string $filename = 'app') : self
     {
         $filename = str_replace('.', '/', $filename);
         $file = realpath(pathBase().'/config/'.$filename.'.php');
@@ -33,7 +33,7 @@ class Config extends ConfigAbstract
             throw new \Exception('file not found - config/'.$filename.'.php');
         }
 
-        $this->data = require $file;
+        $this->config = require $file;
         return $this;
     }
     /**
@@ -42,6 +42,6 @@ class Config extends ConfigAbstract
      */
     public function get() : array
     {
-        return $this->data;
+        return $this->config;
     }
 }
