@@ -30,7 +30,7 @@ class Space
      */
     public function __construct($execute = true)
     {
-//        $this->app['path'] = new Path();
+        $this->app['path'] = new Path();
         $this->app['env'] = new Env();
         $this->app['config'] = new Config();
 //        $this->app['log'] = new Log();
