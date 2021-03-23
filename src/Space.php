@@ -33,7 +33,7 @@ class Space
         $this->app['path'] = new Path();
         $this->app['env'] = new Env();
         $this->app['config'] = new Config();
-//        $this->app['log'] = new Log();
+        $this->app['log'] = new Log();
 //        $this->app['db'] = new Mysql();
 //        $this->app['request'] = new Request();
 //        $this->app['router'] = new Router($this->app['request']);

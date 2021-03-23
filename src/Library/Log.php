@@ -11,17 +11,18 @@ use SpaceMvc\Framework\Library\Abstract\LogAbstract;
 class Log extends LogAbstract
 {
     /**
-     * write.
-     *
-     * @param $data
+     * write
+     * @param mixed $data
      * @param string $filename
+     * @return $this
      */
-    public function write($data, $filename = 'app.log') : void
+    public function write(mixed $data, string $filename = 'app.log') : self
     {
-        $filename = path('log').'/'.$filename;
+        $filename = path('logs').'/'.$filename;
         $fh = fopen($filename, 'a') or die("can't open file");
         $data = is_array($data) || is_object($data) ? json_encode($data) : $data;
         fwrite($fh, date('Y-m-d H:i:s').' : '.$data."\n");
         fclose($fh);
+        return $this;
     }
 }
