@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
+use SpaceMvc\Framework\Asset;
 
 /**
  * Class AssetTest
@@ -11,24 +12,42 @@ use PHPUnit\Framework\TestCase;
 class AssetTest extends BaseTest
 {
     /**
-     * testAddAsset
+     * testAssetClass
      */
-    public function testAddAsset(): void
+    public function testAssetClass() : void
     {
-        // get asset class
         $asset = $this->app->getAsset();
-
-        // test class
         $this->assertEquals(get_class($asset), 'SpaceMvc\Framework\Asset');
+    }
 
-        // test assets get default
+    /**
+     * testAssetGetDefault
+     */
+    public function testAssetGetDefault() : void
+    {
+        $asset = $this->app->getAsset();
         $this->assertEquals($asset->get(), []);
+    }
 
-        // test assets add
+    /**
+     * testAssetAdd
+     */
+    public function testAssetAdd() : void
+    {
+        $asset = $this->app->getAsset();
         $this->assertEquals(get_class($asset->add('css', '/assets/css/example.css')), 'SpaceMvc\Framework\Asset');
         $this->assertEquals(get_class($asset->add('js', '/assets/js/example.js')), 'SpaceMvc\Framework\Asset');
+    }
 
-        // test assets get
+    /**
+     * testAssetGet
+     */
+    public function testAssetGet() : void
+    {
+        $asset = $this->app->getAsset();
+        $asset->add('css', '/assets/css/example.css');
+        $asset->add('js', '/assets/js/example.js');
+
         $data = [
             'css' => [
                 [
@@ -43,24 +62,43 @@ class AssetTest extends BaseTest
                 ]
             ]
         ];
-        $this->assertEquals($asset->get(), $data);
 
-        // test assets get css
+        $this->assertEquals($asset->get(), $data);
+    }
+
+    /**
+     * testAssetGetCss
+     */
+    public function testAssetGetCss() : void
+    {
+        $asset = $this->app->getAsset();
+        $asset->add('css', '/assets/css/example.css');
+
         $data = [
             [
                 'url' => '/assets/css/example.css',
                 'attributes' => []
             ]
         ];
-        $this->assertEquals($asset->get('css'), $data);
 
-        // test assets get js
+        $this->assertEquals($asset->get('css'), $data);
+    }
+
+    /**
+     * testAssetGetJs
+     */
+    public function testAssetGetJs() : void
+    {
+        $asset = $this->app->getAsset();
+        $asset->add('js', '/assets/js/example.js');
+
         $data = [
             [
                 'url' => '/assets/js/example.js',
                 'attributes' => []
             ]
         ];
+
         $this->assertEquals($asset->get('js'), $data);
     }
 }

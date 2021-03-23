@@ -51,7 +51,7 @@ class Asset extends AssetAbstract
                 throw new \Exception(__METHOD__.' : Type '.$type.' is not allowed');
             }
 
-            return $this->assets[$type];
+            return !empty($this->assets[$type]) ? $this->assets[$type] : [];
         }
     }
 

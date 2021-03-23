@@ -15,23 +15,27 @@ abstract class CacheAbstract
      * set
      * @param string $key
      * @param $value
+     * @return $this
      */
-    abstract public function set(string $key, $value);
+    abstract public function set(string $key, $value) : self;
 
     /**
      * get
      * @param string $key
+     * @return mixed
      */
     abstract public function get(string $key) : mixed;
 
     /**
      * delete
      * @param string $key
+     * @return mixed
      */
     abstract public function delete(string $key) : mixed;
 
     /**
      * clear
+     * @return mixed
      */
-    public function clear() {}
+    abstract public function clear() : mixed;
 }

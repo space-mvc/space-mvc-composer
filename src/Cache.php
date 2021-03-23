@@ -31,7 +31,12 @@ class Cache extends CacheAbstract
      */
     public function set($key, $value) : Cache
     {
-        $this->cache->set($key, json_encode($value));
+        if(is_array($value)) {
+            $value = json_encode($value);
+        }
+
+        $this->cache->set($key, $value);
+
         return $this;
     }
 
@@ -43,14 +48,23 @@ class Cache extends CacheAbstract
      */
     public function get($key) : mixed
     {
-        return json_decode($this->cache->get($key));
+        $value = $this->cache->get($key);
+
+        $firstChar = substr($value, 1);
+        if($firstChar == '{')
+        {
+            $value = json_decode($value, 1);
+        }
+
+        return $value;
     }
 
     /**
      * delete
      * @param string $key
+     * @return mixed
      */
-    public function delete(string $key) : int
+    public function delete(string $key) : mixed
     {
         return $this->cache->del($key);
     }
@@ -59,7 +73,7 @@ class Cache extends CacheAbstract
      * clear
      * @return mixed
      */
-    public function clear()
+    public function clear() : mixed
     {
         return $this->cache->flushDB();
     }
