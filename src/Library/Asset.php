@@ -1,12 +1,12 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
 
-use SpaceMvc\Framework\Abstract\AssetAbstract;
+use SpaceMvc\Framework\Library\Abstract\AssetAbstract;
 
 /**
  * Class Asset
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
 class Asset extends AssetAbstract
 {

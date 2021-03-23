@@ -15,7 +15,7 @@ class ConfigTest extends BaseTest
     public function testConfigClass() : void
     {
         $config = $this->app->getConfig();
-        $this->assertEquals(get_class($config), 'SpaceMvc\Framework\Config');
+        $this->assertEquals(get_class($config), 'SpaceMvc\Framework\Library\Config');
     }
 
     /**
@@ -25,7 +25,7 @@ class ConfigTest extends BaseTest
     public function testConfigSet() : void
     {
         $config = $this->app->getConfig();
-        $this->assertEquals(get_class($config->setConfig('paths')), 'SpaceMvc\Framework\Config');
+        $this->assertEquals(get_class($config->setConfig('paths')), 'SpaceMvc\Framework\Library\Config');
     }
 
     /**

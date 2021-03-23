@@ -1,12 +1,12 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
 
-use SpaceMvc\Framework\Abstract\SessionAbstract;;
+use SpaceMvc\Framework\Library\Abstract\SessionAbstract;
 
 /**
  * Class Session
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
 class Session extends SessionAbstract
 {
@@ -16,20 +16,24 @@ class Session extends SessionAbstract
      */
     public function __construct()
     {
-        $this->loadData();
+        $this->setSession();
     }
 
     /**
-     * loadData
+     * setSession
      * @return $this
      */
-    public function loadData() : self
+    public function setSession() : self
     {
-        if(!session_id()) {
-            session_start();
+        $mode = php_sapi_name();
+
+        if($mode !== 'cli') {
+            if(!session_id()) {
+                session_start();
+            }
+            $this->data = $_SESSION;
         }
 
-        $this->data = $_SESSION;
         return $this;
     }
 
@@ -39,7 +43,7 @@ class Session extends SessionAbstract
      * @param $value
      * @return $this
      */
-    public function set($key, $value) : self
+    public function set(string $key, mixed $value) : self
     {
         $_SESSION[$key] = $value;
 
@@ -54,7 +58,7 @@ class Session extends SessionAbstract
      * @param $key
      * @return mixed
      */
-    public function get($key = null) : mixed
+    public function get(string $key = null) : mixed
     {
         if(!$key) {
             return $this->data;

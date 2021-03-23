@@ -1,10 +1,10 @@
 <?php
 
-namespace SpaceMvc\Framework\Abstract;
+namespace SpaceMvc\Framework\Library\Abstract;
 
 /**
  * Class AssetAbstract
- * @package SpaceMvc\Framework\Abstract
+ * @package SpaceMvc\Framework\Library\Abstract
  */
 abstract class AssetAbstract
 {

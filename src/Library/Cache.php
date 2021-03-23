@@ -1,12 +1,12 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
 
-use SpaceMvc\Framework\Abstract\CacheAbstract;
+use SpaceMvc\Framework\Library\Abstract\CacheAbstract;
 
 /**
  * Class Cache
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
 class Cache extends CacheAbstract
 {

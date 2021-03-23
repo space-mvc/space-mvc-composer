@@ -1,12 +1,14 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
+
+use SpaceMvc\Framework\Library\Abstract\PathAbstract;
 
 /**
  * Class Path
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
-class Path
+class Path extends PathAbstract
 {
     /**
      * get

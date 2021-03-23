@@ -1,10 +1,10 @@
 <?php
 
-namespace SpaceMvc\Framework\Abstract;
+namespace SpaceMvc\Framework\Library\Abstract;
 
 /**
  * Class SessionAbstract
- * @package SpaceMvc\Framework\Abstract
+ * @package SpaceMvc\Framework\Library\Abstract
  */
 abstract class SessionAbstract
 {
@@ -12,10 +12,10 @@ abstract class SessionAbstract
     protected array $data;
 
     /**
-     * loadData
+     * setSession
      * @return $this
      */
-    abstract public function loadData() : self;
+    abstract public function setSession() : self;
 
     /**
      * set

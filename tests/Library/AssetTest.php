@@ -16,7 +16,7 @@ class AssetTest extends BaseTest
     public function testAssetClass() : void
     {
         $asset = $this->app->getAsset();
-        $this->assertEquals(get_class($asset), 'SpaceMvc\Framework\Asset');
+        $this->assertEquals(get_class($asset), 'SpaceMvc\Framework\Library\Asset');
     }
 
     /**
@@ -34,8 +34,8 @@ class AssetTest extends BaseTest
     public function testAssetAdd() : void
     {
         $asset = $this->app->getAsset();
-        $this->assertEquals(get_class($asset->add('css', '/assets/css/example.css')), 'SpaceMvc\Framework\Asset');
-        $this->assertEquals(get_class($asset->add('js', '/assets/js/example.js')), 'SpaceMvc\Framework\Asset');
+        $this->assertEquals(get_class($asset->add('css', '/assets/css/example.css')), 'SpaceMvc\Framework\Library\Asset');
+        $this->assertEquals(get_class($asset->add('js', '/assets/js/example.js')), 'SpaceMvc\Framework\Library\Asset');
     }
 
     /**

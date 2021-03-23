@@ -1,12 +1,14 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
+
+use SpaceMvc\Framework\Library\Abstract\LogAbstract;
 
 /**
  * Class Log
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
-class Log
+class Log extends LogAbstract
 {
     /**
      * write.

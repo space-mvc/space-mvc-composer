@@ -1,12 +1,12 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
 
-use SpaceMvc\Framework\Abstract\ConfigAbstract;
+use SpaceMvc\Framework\Library\Abstract\ConfigAbstract;
 
 /**
  * Class Config
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
 class Config extends ConfigAbstract
 {

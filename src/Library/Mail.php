@@ -1,12 +1,14 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
+
+use SpaceMvc\Framework\Library\Abstract\MailAbstract;
 
 /**
  * Class Mail
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
-class Mail
+class Mail extends MailAbstract
 {
     /** @var array $sendTo */
     protected array $sendTo = ['somebody@example.com','somebodyelse@example.com'];

@@ -1,14 +1,15 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
 
-use SpaceMvc\Framework\Database\Mysql;
+use SpaceMvc\Framework\Library\Abstract\DatabaseAbstract;
+use SpaceMvc\Framework\Library\Database\Mysql;
 
 /**
  * Class Database
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
-class Database
+class Database extends DatabaseAbstract
 {
     /** @var array $databases */
     protected array $databases = [];

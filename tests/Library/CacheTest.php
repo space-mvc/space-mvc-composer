@@ -15,7 +15,7 @@ class CacheTest extends BaseTest
     public function testCacheClass() : void
     {
         $cache = $this->app->getCache();
-        $this->assertEquals(get_class($cache), 'SpaceMvc\Framework\Cache');
+        $this->assertEquals(get_class($cache), 'SpaceMvc\Framework\Library\Cache');
     }
 
     /**
@@ -24,7 +24,7 @@ class CacheTest extends BaseTest
     public function testCacheSet() : void
     {
         $cache = $this->app->getCache();
-        $this->assertEquals(get_class($cache->set('key1', 'value1')), 'SpaceMvc\Framework\Cache');
+        $this->assertEquals(get_class($cache->set('key1', 'value1')), 'SpaceMvc\Framework\Library\Cache');
     }
 
     /**

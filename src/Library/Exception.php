@@ -1,12 +1,14 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
+
+use SpaceMvc\Framework\Library\Abstract\ExceptionAbstract;
 
 /**
  * Class Exception
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
-class Exception
+class Exception extends ExceptionAbstract
 {
     /**
      * throw
@@ -25,7 +27,7 @@ class Exception
      * @param string $message
      * @param int $code
      */
-    public function throwJson($message = "", $code = 0) :void
+    public function throwJson($message = "", $code = 0) : void
     {
         echo json_encode([
             'exception' => [

@@ -1,12 +1,12 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
 
-use SpaceMvc\Framework\Abstract\EnvAbstract;
+use SpaceMvc\Framework\Library\Abstract\EnvAbstract;
 
 /**
  * Class Env
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
 class Env extends EnvAbstract
 {

@@ -2,8 +2,18 @@
 
 namespace SpaceMvc\Framework;
 
-use SpaceMvc\Framework\Database\Mysql;
+use SpaceMvc\Framework\Library\Asset;
+use SpaceMvc\Framework\Library\Cache;
+use SpaceMvc\Framework\Library\Config;
+use SpaceMvc\Framework\Library\Database;
+use SpaceMvc\Framework\Library\Env;
+use SpaceMvc\Framework\Library\Exception;
+use SpaceMvc\Framework\Library\Log;
+use SpaceMvc\Framework\Library\Mail;
+use SpaceMvc\Framework\Library\Path;
+use SpaceMvc\Framework\Library\Session;
 
+use SpaceMvc\Framework\Database\Mysql;
 
 /**
  * Class Space
@@ -27,8 +37,8 @@ class Space
 //        $this->app['db'] = new Mysql();
 //        $this->app['request'] = new Request();
 //        $this->app['router'] = new Router($this->app['request']);
+        $this->app['session'] = new Session();
         $this->app['cache'] = new Cache();
-//        $this->app['session'] = new Session();
 //        $this->app['exception'] = new Exception();
         $this->app['asset'] = new Asset();
 //        $this->app['layout'] = new Layout('frontend', new View('frontend.index'));

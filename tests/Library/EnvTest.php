@@ -15,7 +15,7 @@ class EnvTest extends BaseTest
     public function testEnvClass() : void
     {
         $env = $this->app->getEnv();
-        $this->assertEquals(get_class($env), 'SpaceMvc\Framework\Env');
+        $this->assertEquals(get_class($env), 'SpaceMvc\Framework\Library\Env');
     }
 
     /**
@@ -24,7 +24,7 @@ class EnvTest extends BaseTest
     public function testEnvSet()
     {
         $env = $this->app->getEnv();
-        $this->assertEquals(get_class($env->setEnv()), 'SpaceMvc\Framework\Env');
+        $this->assertEquals(get_class($env->setEnv()), 'SpaceMvc\Framework\Library\Env');
     }
 
     /**
