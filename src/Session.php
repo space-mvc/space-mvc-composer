@@ -2,37 +2,50 @@
 
 namespace SpaceMvc\Framework;
 
+use SpaceMvc\Framework\Abstract\SessionAbstract;;
+
 /**
  * Class Session
  * @package SpaceMvc\Framework
  */
-class Session
+class Session extends SessionAbstract
 {
-    /** @var array $session */
-    protected array $session;
-
     /**
      * Cache constructor.
      *
      */
     public function __construct()
     {
+        $this->loadData();
+    }
+
+    /**
+     * loadData
+     * @return $this
+     */
+    public function loadData() : self
+    {
         if(!session_id()) {
             session_start();
         }
 
-        $this->session = $_SESSION;
+        $this->data = $_SESSION;
+        return $this;
     }
 
     /**
-     * set.
-     *
+     * set
      * @param $key
      * @param $value
+     * @return $this
      */
-    public function set($key, $value) : void
+    public function set($key, $value) : self
     {
         $_SESSION[$key] = $value;
+
+        $this->data[$key] = $value;
+
+        return $this;
     }
 
     /**
@@ -41,12 +54,12 @@ class Session
      * @param $key
      * @return mixed
      */
-    public function get($key = null)
+    public function get($key = null) : mixed
     {
         if(!$key) {
-            return $_SESSION;
+            return $this->data;
         }
 
-        return $_SESSION[$key];
+        return $this->data[$key];
     }
 }

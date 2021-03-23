@@ -2,27 +2,27 @@
 
 namespace SpaceMvc\Framework;
 
+use SpaceMvc\Framework\Abstract\EnvAbstract;
+
 /**
  * Class Env
  * @package SpaceMvc\Framework
  */
-class Env
+class Env extends EnvAbstract
 {
-    /** @var array $data */
-    private array $data = [];
-
     /**
-     * Environment constructor.
+     * File constructor.
      */
     public function __construct()
     {
-        $this->initData();
+        $this->loadData();
     }
 
     /**
-     * initData.
+     * loadData
+     * @return $this
      */
-    public function initData() : void
+    public function loadData() : self
     {
         $filename = pathBase().'/.env';
 
@@ -61,6 +61,8 @@ class Env
                 fclose($handle);
             }
         }
+
+        return $this;
     }
 
     /**
@@ -70,7 +72,7 @@ class Env
      * @param null $default
      * @return mixed
      */
-    public function get($key = null, $default = null)
+    public function get($key = null, $default = null) : mixed
     {
         $key = strtoupper($key);
 

@@ -2,50 +2,71 @@
 
 namespace SpaceMvc\Framework;
 
+use SpaceMvc\Framework\Abstract\AssetAbstract;
+
 /**
  * Class Asset
  * @package SpaceMvc\Framework
  */
-class Asset
+class Asset extends AssetAbstract
 {
-    /** @var array $assets */
-    protected array $assets = [];
+    /** @var array $types */
+    protected array $types = ['css', 'js'];
 
     /**
      * add
      * @param $type
      * @param $url
      * @param array $attributes
+     * @return $this
+     * @throws \Exception
      */
-    public function add($type, $url, $attributes = [])
+    public function add($type, $url, $attributes = []) : self
     {
+        if(!in_array($type, $this->types)) {
+            throw new \Exception(__METHOD__.' : Type '.$type.' is not allowed');
+        }
+
         $this->assets[$type][] = [
             'url' => $url,
             'attributes' => $attributes
         ];
+
+        return $this;
     }
 
     /**
      * get
-     * @param string|null $type
+     * @param null $type
      * @return array
+     * @throws \Exception
      */
     public function get($type = null) : array
     {
         if(!$type) {
             return $this->assets;
         } else {
+
+            if(!in_array($type, $this->types)) {
+                throw new \Exception(__METHOD__.' : Type '.$type.' is not allowed');
+            }
+
             return $this->assets[$type];
         }
     }
 
     /**
      * render
-     * @param string $type
+     * @param $type
      * @return string
+     * @throws \Exception
      */
-    public function render($type = 'js') : string
+    public function render($type) : string
     {
+        if(!in_array($type, $this->types)) {
+            throw new \Exception(__METHOD__.' : Type '.$type.' is not allowed');
+        }
+
         $html = '';
 
         if(!empty($this->assets[$type])) {
@@ -53,11 +74,11 @@ class Asset
                 switch($type)
                 {
                     case 'js':
-                        $html .= '<script type="text/javascript" src="'.$url.'"></script>'."\n";
+                        $html .= '<script type="text/javascript" src="'.$asset['url'].'"></script>'."\n";
                         break;
 
                     case 'css':
-                        $html .= '<link rel="stylesheet" type="text/css" href="'.$url.'" />'."\n";
+                        $html .= '<link rel="stylesheet" type="text/css" href="'.$asset['url'].'" />'."\n";
                         break;
                 }
             }

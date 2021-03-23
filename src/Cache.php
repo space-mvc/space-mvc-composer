@@ -2,15 +2,14 @@
 
 namespace SpaceMvc\Framework;
 
+use SpaceMvc\Framework\Abstract\CacheAbstract;
+
 /**
  * Class Cache
  * @package SpaceMvc\Framework
  */
-class Cache
+class Cache extends CacheAbstract
 {
-    /** @var \Redis $redis */
-    protected \Redis $redis;
-
     /**
      * Cache constructor.
      *
@@ -19,38 +18,21 @@ class Cache
     {
         $config = config('app')['cache']['redis'];
 
-        $this->redis = new \Redis();
-        $this->redis->connect('127.0.0.1', $config['port']);
-        $this->redis->select($config['database']);
+        $this->cache = new \Redis();
+        $this->cache->connect('127.0.0.1', $config['port']);
+        $this->cache->select($config['database']);
     }
 
     /**
-     * setDb
-     * @param int $database
-     */
-    public function setDb($database = 1)
-    {
-        $this->redis->select($database);
-    }
-
-    /**
-     * getRedis
-     * @return \Redis
-     */
-    public function getRedis() : \Redis
-    {
-        return $this->redis;
-    }
-
-    /**
-     * set.
      *
      * @param $key
      * @param $value
+     * @return Cache
      */
-    public function set($key, $value) : void
+    public function set($key, $value) : Cache
     {
-        $this->redis->set($key, json_encode($value));
+        $this->cache->set($key, json_encode($value));
+        return $this;
     }
 
     /**
@@ -59,9 +41,9 @@ class Cache
      * @param $key
      * @return mixed
      */
-    public function get($key)
+    public function get($key) : mixed
     {
-        return json_decode($this->redis->get($key));
+        return json_decode($this->cache->get($key));
     }
 
     /**
@@ -70,15 +52,15 @@ class Cache
      */
     public function delete(string $key) : int
     {
-        return $this->redis->del($key);
+        return $this->cache->del($key);
     }
 
     /**
-     * flushDb
-     * @return bool
+     * clear
+     * @return mixed
      */
-    public function flushDb()
+    public function clear()
     {
-        return $this->redis->flushDB();
+        return $this->cache->flushDB();
     }
 }

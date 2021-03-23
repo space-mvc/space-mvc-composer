@@ -2,46 +2,29 @@
 
 namespace SpaceMvc\Framework;
 
+use SpaceMvc\Framework\Abstract\ConfigAbstract;
+
 /**
  * Class Config
  * @package SpaceMvc\Framework
  */
-class Config
+class Config extends ConfigAbstract
 {
-    /** @var array $config */
-    private array $config = [];
-
     /**
-     * set
-     * @param string $key
-     * @param $value
+     * File constructor.
      */
-    public function set(string $key, $value) : void
+    public function __construct()
     {
-        $this->config[$key] = $value;
+        $this->loadData();
     }
 
     /**
-     * get
-     * @param string | bool $key
-     * @param null $default
-     * @return mixed
-     */
-    public function get($key = false, $default = null)
-    {
-        if(empty($key)) {
-            return $this->config;
-        }
-        
-        return !empty($this->config[$key]) ? $this->config[$key] : $default;
-    }
-
-    /**
-     * getFile
+     * loadData
      * @param string $filename
-     * @return array
+     * @return $this
+     * @throws \Exception
      */
-    public function getFile(string $filename = '') : array
+    public function loadData(string $filename = 'app') : self
     {
         $filename = str_replace('.', '/', $filename);
         $file = realpath(pathBase().'/config/'.$filename.'.php');
@@ -50,6 +33,15 @@ class Config
             throw new \Exception('file not found - config/'.$filename.'.php');
         }
 
-        return require $file;
+        $this->data = require $file;
+        return $this;
+    }
+    /**
+     * get
+     * @return array
+     */
+    public function get() : array
+    {
+        return $this->data;
     }
 }
