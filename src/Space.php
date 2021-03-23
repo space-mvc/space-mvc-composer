@@ -27,7 +27,7 @@ class Space
 //        $this->app['db'] = new Mysql();
 //        $this->app['request'] = new Request();
 //        $this->app['router'] = new Router($this->app['request']);
-//        $this->app['cache'] = new Cache();
+        $this->app['cache'] = new Cache();
 //        $this->app['session'] = new Session();
 //        $this->app['exception'] = new Exception();
         $this->app['asset'] = new Asset();

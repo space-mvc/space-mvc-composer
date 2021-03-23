@@ -12,7 +12,6 @@ class Cache extends CacheAbstract
 {
     /**
      * Cache constructor.
-     *
      */
     public function __construct()
     {
@@ -24,12 +23,12 @@ class Cache extends CacheAbstract
     }
 
     /**
-     *
-     * @param $key
-     * @param $value
-     * @return Cache
+     * set
+     * @param string $key
+     * @param mixed $value
+     * @return $this
      */
-    public function set($key, $value) : Cache
+    public function set(string $key, mixed $value) : Cache
     {
         if(is_array($value)) {
             $value = json_encode($value);
@@ -42,11 +41,10 @@ class Cache extends CacheAbstract
 
     /**
      * get.
-     *
      * @param $key
      * @return mixed
      */
-    public function get($key) : mixed
+    public function get(string $key) : mixed
     {
         $value = $this->cache->get($key);
 

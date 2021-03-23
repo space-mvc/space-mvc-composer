@@ -14,10 +14,10 @@ abstract class CacheAbstract
     /**
      * set
      * @param string $key
-     * @param $value
+     * @param mixed $value
      * @return $this
      */
-    abstract public function set(string $key, $value) : self;
+    abstract public function set(string $key, mixed $value) : self;
 
     /**
      * get
