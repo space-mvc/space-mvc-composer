@@ -30,6 +30,7 @@ class Space
      */
     public function __construct($execute = true)
     {
+        $this->app['exception'] = new Exception();
         $this->app['path'] = new Path();
         $this->app['env'] = new Env();
         $this->app['config'] = new Config();
@@ -39,7 +40,7 @@ class Space
 //        $this->app['router'] = new Router($this->app['request']);
         $this->app['session'] = new Session();
         $this->app['cache'] = new Cache();
-//        $this->app['exception'] = new Exception();
+
         $this->app['asset'] = new Asset();
 //        $this->app['layout'] = new Layout('frontend', new View('frontend.index'));
 //

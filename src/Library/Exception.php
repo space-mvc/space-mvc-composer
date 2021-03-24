@@ -16,18 +16,17 @@ class Exception extends ExceptionAbstract
      * @param int $code
      * @throws \Exception
      */
-    public function throw($message = "", $code = 0) : void
+    public function throw(string $message, int $code = 500) : void
     {
         throw new \Exception($message, $code);
     }
 
     /**
-     * throwJson.
-     *
+     * throwJson
      * @param string $message
      * @param int $code
      */
-    public function throwJson($message = "", $code = 0) : void
+    public function throwJson(string $message, int $code = 500) : void
     {
         echo json_encode([
             'exception' => [
