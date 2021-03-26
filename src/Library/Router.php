@@ -1,25 +1,17 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
+
+use SpaceMvc\Framework\Library\Abstract\RouterAbstract;
 
 /**
  * Class Router
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
-class Router
+class Router extends RouterAbstract
 {
-    /** @var Request $request */
-    private Request $request;
-
-    /** @var array $routes */
-    private array $routes = [];
-
-    /** @var array $route */
-    private array $route = [];
-
     /**
      * Router constructor.
-     *
      * @param Request $request
      */
     public function __construct(Request $request)
@@ -30,9 +22,10 @@ class Router
     }
 
     /**
-     * initRoutes.
+     * initRoutes
+     * @return $this
      */
-    public function initRoutes() : void
+    public function initRoutes(): self
     {
         $path = path('routes');
         $files = scandir($path);
@@ -44,12 +37,14 @@ class Router
                 }
             }
         }
+        return $this;
     }
 
     /**
-     * initRoute.
+     * initRoute
+     * @return $this
      */
-    public function initRoute() : void
+    public function initRoute(): self
     {
         if(!empty($this->routes)) {
             foreach($this->routes as $route) {
@@ -61,11 +56,11 @@ class Router
                 }
             }
         }
+        return $this;
     }
 
     /**
      * getRoutes
-     *
      * @return array
      */
     public function getRoutes(): array
@@ -75,7 +70,6 @@ class Router
 
     /**
      * getRoute
-     *
      * @return array
      */
     public function getRoute(): array

@@ -1,12 +1,14 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Mvc;
+
+use SpaceMvc\Framework\Library\Abstract\ConfigAbstract;
 
 /**
  * Class Controller
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Mvc
  */
-class Controller
+class Controller extends ConfigAbstract
 {
     /** @var Space $app */
     private Space $app;
@@ -42,11 +44,11 @@ class Controller
     }
 
     /**
-     * execute.
-     *
+     * init
      * @return $this
+     * @throws \Exception
      */
-    public function init()
+    public function init(): self
     {
         if(!class_exists($this->controllerName)) {
             exception('controller class does not exist:'.$this->controllerName, 500);

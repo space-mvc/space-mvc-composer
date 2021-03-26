@@ -1,28 +1,15 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Mvc;
+
+use SpaceMvc\Framework\Mvc\Abstract\LayoutAbstract;
 
 /**
  * Class Layout
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Mvc
  */
-class Layout
+class Layout extends LayoutAbstract
 {
-    /** @var string $path */
-    private string $path = '';
-
-    /** @var string $layoutName */
-    private string $layoutName;
-
-    /** @var array $params */
-    private array $params = [];
-
-    /** @var View $view */
-    private View $view;
-
-    /** @var string $responseBody */
-    private string $responseBody = '';
-
     /**
      * Layout constructor.
      * @param string $layoutName
@@ -38,9 +25,10 @@ class Layout
     }
 
     /**
-     * init.
+     * init
+     * @return $this
      */
-    public function init() : void
+    public function init(): self
     {
         // These two variables include into the 'require' file automatically
         $data = $this->params;
@@ -51,13 +39,14 @@ class Layout
         require $this->path.'/'.$layoutName.'.php';
         $this->responseBody = ob_get_contents();
         ob_end_clean();
+        return $this;
     }
 
     /**
      * getResponseBody
      * @return string
      */
-    public function getResponseBody() : string
+    public function getResponseBody(): string
     {
         return $this->responseBody;
     }
