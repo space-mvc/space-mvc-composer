@@ -12,10 +12,10 @@ class Path extends PathAbstract
 {
     /**
      * get
-     * @param false $key
-     * @return string|array
+     * @param string null $key
+     * @return mixed
      */
-    public function get($key = false)
+    public function get($key = null): mixed
     {
         $paths = require pathBase().'/config/paths.php';
 

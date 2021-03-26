@@ -8,5 +8,10 @@ namespace SpaceMvc\Framework\Library\Abstract;
  */
 abstract class PathAbstract
 {
-
+    /**
+     * get
+     * @param string|null $key
+     * @return mixed
+     */
+    abstract public function get($key = null): mixed;
 }

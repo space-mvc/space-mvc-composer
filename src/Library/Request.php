@@ -1,32 +1,22 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Library;
+
+use SpaceMvc\Framework\Library\Abstract\RequestAbstract;
 
 /**
  * Class Request
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Library
  */
-class Request
+class Request extends RequestAbstract
 {
-    /** @var string $uri */
-    private string $uri = '/';
-
-    /** @var string $method */
-    private string $method = 'get';
-
-    /** @var array $get */
-    private array $get = [];
-
-    /** @var array $post */
-    private array $post = [];
-
     /**
      * Request constructor.
      */
     public function __construct()
     {
-        $this->uri = !empty($_SERVER['REQUEST_URI']) ? explode('?', $_SERVER['REQUEST_URI'])[0] : null;
-        $this->method = !empty($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : null;
+        $this->uri = !empty($_SERVER['REQUEST_URI']) ? explode('?', $_SERVER['REQUEST_URI'])[0] : '';
+        $this->method = !empty($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '';
         $this->get = !empty($_GET) ? $_GET : [];
         $this->post = !empty($_POST) ? $_POST : [];
     }
@@ -57,7 +47,7 @@ class Request
      * @param mixed $default
      * @return mixed
      */
-    public function get($key = null, $default = null)
+    public function get($key = null, $default = null): mixed
     {
         if(!empty($key)) {
             return !empty($this->get[$key]) ? $this->get[$key] : $default;
@@ -72,7 +62,7 @@ class Request
      * @param mixed $default
      * @return mixed
      */
-    public function post($key = null, $default = null)
+    public function post($key = null, $default = null): mixed
     {
         if(!empty($key)) {
             return !empty($this->post[$key]) ? $this->post[$key] : $default;

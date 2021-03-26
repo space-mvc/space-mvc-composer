@@ -11,6 +11,7 @@ use SpaceMvc\Framework\Library\Exception;
 use SpaceMvc\Framework\Library\Log;
 use SpaceMvc\Framework\Library\Mail;
 use SpaceMvc\Framework\Library\Path;
+use SpaceMvc\Framework\Library\Request;
 use SpaceMvc\Framework\Library\Session;
 
 use SpaceMvc\Framework\Database\Mysql;
@@ -36,7 +37,7 @@ class Space
         $this->app['config'] = new Config();
         $this->app['log'] = new Log();
 //        $this->app['db'] = new Mysql();
-//        $this->app['request'] = new Request();
+        $this->app['request'] = new Request();
 //        $this->app['router'] = new Router($this->app['request']);
         $this->app['session'] = new Session();
         $this->app['cache'] = new Cache();

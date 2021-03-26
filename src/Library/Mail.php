@@ -10,28 +10,34 @@ use SpaceMvc\Framework\Library\Abstract\MailAbstract;
  */
 class Mail extends MailAbstract
 {
-    /** @var array $sendTo */
-    protected array $sendTo = ['somebody@example.com','somebodyelse@example.com'];
-
-    /** @var string $sendFrom */
-    protected string $sendFrom = 'webmaster@example.com';
-
-    /** @var string $cc */
-    protected string $cc = 'webmaster@example.com';
-
-    /** @var string $headers */
-    protected string $headers = '';
-
-    /** @var string $subject */
-    protected string $subject = 'HTML email';
-
-    /** @var string $body */
-    protected string $body = '';
-
     /**
-     * initBody.
+     * Mail constructor.
      */
     public function __construct()
+    {
+        $this->initHeaders();
+        $this->initBody();
+    }
+
+    /**
+     * initHeaders
+     * @return $this
+     */
+    public function initHeaders() : self
+    {
+        $headers  = "From: Sender Name <".$this->sendFrom.">" . "\r\n";
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+        $headers .= 'Cc: '.$this->cc.'' . "\r\n";
+        $this->headers = $headers;
+        return $this;
+    }
+
+    /**
+     * initBody
+     * @return $this
+     */
+    public function initBody() : self
     {
         $this->body = "
         <html>
@@ -53,25 +59,14 @@ class Mail extends MailAbstract
 	    </body>
         </html>
         ";
-    }
-
-    /**
-     * initHeaders.
-     */
-    public function initHeaders() : void
-    {
-        $headers  = "From: Sender Name <".$this->sendFrom.">" . "\r\n";
-        $headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-        $headers .= 'Cc: '.$this->cc.'' . "\r\n";
-        $this->headers = $headers;
+        return $this;
     }
 
     /**
      * send
-     * @return \mail
+     * @return mixed
      */
-    public function send() : \mail
+    public function send() : mixed
     {
         $this->initHeaders();
         return \mail(implode(',', $this->sendTo), $this->subject, $this->body, $this->headers);
@@ -80,9 +75,9 @@ class Mail extends MailAbstract
     /**
      * setSendTo
      * @param array $sendTo
-     * @return Mail
+     * @return $this
      */
-    public function setSendTo(array $sendTo) : Mail
+    public function setSendTo(array $sendTo) : self
     {
         $this->sendTo = $sendTo;
         return $this;
@@ -91,9 +86,9 @@ class Mail extends MailAbstract
     /**
      * setSendFrom
      * @param string $sendFrom
-     * @return Mail
+     * @return $this
      */
-    public function setSendFrom(string $sendFrom) : Mail
+    public function setSendFrom(string $sendFrom) : self
     {
         $this->sendFrom = $sendFrom;
         return $this;
@@ -102,9 +97,9 @@ class Mail extends MailAbstract
     /**
      * setCc
      * @param string $cc
-     * @return Mail
+     * @return $this
      */
-    public function setCc(string $cc) : Mail
+    public function setCc(string $cc) : self
     {
         $this->cc = $cc;
         return $this;
@@ -113,9 +108,9 @@ class Mail extends MailAbstract
     /**
      * setHeaders
      * @param string $headers
-     * @return Mail
+     * @return $this
      */
-    public function setHeaders(string $headers) : Mail
+    public function setHeaders(string $headers) : self
     {
         $this->headers = $headers;
         return $this;
@@ -124,9 +119,9 @@ class Mail extends MailAbstract
     /**
      * setSubject
      * @param string $subject
-     * @return Mail
+     * @return $this
      */
-    public function setSubject(string $subject) : Mail
+    public function setSubject(string $subject) : self
     {
         $this->subject = $subject;
         return $this;
@@ -135,9 +130,9 @@ class Mail extends MailAbstract
     /**
      * setBody
      * @param string $body
-     * @return Mail
+     * @return $this
      */
-    public function setBody(string $body) : Mail
+    public function setBody(string $body) : self
     {
         $this->body = $body;
         return $this;
