@@ -2,13 +2,14 @@
 
 namespace SpaceMvc\Framework\Mvc;
 
-use SpaceMvc\Framework\Library\Abstract\ConfigAbstract;
+use SpaceMvc\Framework\Mvc\Abstract\ControllerAbstract;
+use SpaceMvc\Framework\Space;
 
 /**
  * Class Controller
  * @package SpaceMvc\Framework\Mvc
  */
-class Controller extends ConfigAbstract
+class Controller extends ControllerAbstract
 {
     /** @var Space $app */
     private Space $app;
@@ -71,6 +72,7 @@ class Controller extends ConfigAbstract
             echo $actionResponse;
             exit;
         }
+        return $this;
     }
 
     /**

@@ -9,19 +9,13 @@ namespace SpaceMvc\Framework\Library\Abstract;
 abstract class RouterAbstract
 {
     /** @var Request $request */
-    protected Request $request;
+    protected $request;
 
     /** @var array $routes */
     protected array $routes = [];
 
     /** @var array $route */
     protected array $route = [];
-
-    /**
-     * RouterAbstract constructor.
-     * @param Request $request
-     */
-    abstract public function __construct(Request $request);
 
     /**
      * initRoutes

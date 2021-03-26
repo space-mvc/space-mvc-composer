@@ -12,10 +12,11 @@ class Cache extends CacheAbstract
 {
     /**
      * Cache constructor.
+     * @param Config $config
      */
-    public function __construct()
+    public function __construct(Config $config)
     {
-        $config = config('app')['cache']['redis'];
+        $config = $config->setConfig('app')->get()['cache']['redis'];
 
         $this->cache = new \Redis();
         $this->cache->connect('127.0.0.1', $config['port']);

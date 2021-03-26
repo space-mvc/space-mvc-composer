@@ -12,10 +12,12 @@ class Router extends RouterAbstract
 {
     /**
      * Router constructor.
+     * @param Path $path
      * @param Request $request
      */
-    public function __construct(Request $request)
+    public function __construct(Path $path, Request $request)
     {
+        $this->path = $path;
         $this->request = $request;
         $this->initRoutes();
         $this->initRoute();
@@ -27,7 +29,7 @@ class Router extends RouterAbstract
      */
     public function initRoutes(): self
     {
-        $path = path('routes');
+        $path = $this->path->get('routes');
         $files = scandir($path);
 
         if(!empty($files)) {

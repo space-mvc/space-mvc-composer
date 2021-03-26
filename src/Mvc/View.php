@@ -1,33 +1,22 @@
 <?php
 
-namespace SpaceMvc\Framework;
+namespace SpaceMvc\Framework\Mvc;
+
+use SpaceMvc\Framework\Mvc\Abstract\ViewAbstract;
 
 /**
  * Class View
- * @package SpaceMvc\Framework
+ * @package SpaceMvc\Framework\Mvc
  */
-class View
+class View extends ViewAbstract
 {
-    /** @var string $path */
-    private string $path = '';
-
-    /** @var $viewName */
-    private string $viewName = '';
-
-    /** @var array $params */
-    private array $params = [];
-
-    /** @var string $responseBody */
-    private string $responseBody = '';
-
     /**
      * View constructor.
-     *
-     * @param $viewName
+     * @param string $viewName
      * @param array $params
      * @throws \Exception
      */
-    public function __construct($viewName, $params = [])
+    public function __construct(string $viewName, $params = [])
     {
         $this->path = path('views');
         $this->viewName = $viewName;

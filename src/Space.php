@@ -12,9 +12,14 @@ use SpaceMvc\Framework\Library\Log;
 use SpaceMvc\Framework\Library\Mail;
 use SpaceMvc\Framework\Library\Path;
 use SpaceMvc\Framework\Library\Request;
+use SpaceMvc\Framework\Library\Router;
 use SpaceMvc\Framework\Library\Session;
-
 use SpaceMvc\Framework\Database\Mysql;
+
+use SpaceMvc\Framework\Mvc\Controller;
+use SpaceMvc\Framework\Mvc\Model;
+use SpaceMvc\Framework\Mvc\View;
+use SpaceMvc\Framework\Mvc\Layout;
 
 /**
  * Class Space
@@ -36,30 +41,29 @@ class Space
         $this->app['env'] = new Env();
         $this->app['config'] = new Config();
         $this->app['log'] = new Log();
-//        $this->app['db'] = new Mysql();
+        //$this->app['db'] = new Mysql();
         $this->app['request'] = new Request();
-//        $this->app['router'] = new Router($this->app['request']);
+        $this->app['router'] = new Router($this->app['path'], $this->app['request']);
         $this->app['session'] = new Session();
-        $this->app['cache'] = new Cache();
-
+        $this->app['cache'] = new Cache($this->app['config']);
         $this->app['asset'] = new Asset();
-//        $this->app['layout'] = new Layout('frontend', new View('frontend.index'));
-//
-//        $controllerName = !empty($this->app['router']->getRoute()['controller']) ? $this->app['router']->getRoute()['controller'] : null;
-//        $actionName = !empty($this->app['router']->getRoute()['action']) ? $this->app['router']->getRoute()['action'] : null;
-//
-//        if(empty($controllerName) || empty($actionName)) {
-//            $controllerName = 'App\Http\Controllers\Errors\Error404Controller';
-//            $actionName = 'index';
-//        }
-//
-//        $this->app['controller'] = new Controller($this, $controllerName, $actionName);
-//        $this->app['mail'] = new Mail();
-//
-//        if ($execute) {
-//            echo $this->app['controller']->getResponseBody();
-//            exit;
-//        }
+        $this->app['layout'] = new Layout('frontend', new View('frontend.index'));
+
+        $controllerName = !empty($this->app['router']->getRoute()['controller']) ? $this->app['router']->getRoute()['controller'] : null;
+        $actionName = !empty($this->app['router']->getRoute()['action']) ? $this->app['router']->getRoute()['action'] : null;
+
+        if(empty($controllerName) || empty($actionName)) {
+            $controllerName = 'App\Http\Controllers\Errors\Error404Controller';
+            $actionName = 'index';
+        }
+
+        $this->app['controller'] = new Controller($this, $controllerName, $actionName);
+        $this->app['mail'] = new Mail();
+
+        if ($execute) {
+            echo $this->app['controller']->getResponseBody();
+            exit;
+        }
     }
 
     /**
@@ -186,5 +190,16 @@ class Space
     public function getController() : Controller
     {
         return $this->app['controller'];
+    }
+
+    /**
+     * getView
+     * @param string $viewName
+     * @param array $params
+     * @return View
+     */
+    public function getView(string $viewName, array $params = [])
+    {
+        return new View($viewName, $params);
     }
 }
