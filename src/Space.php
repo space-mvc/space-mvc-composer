@@ -41,7 +41,7 @@ class Space
         $this->app['env'] = new Env();
         $this->app['config'] = new Config();
         $this->app['log'] = new Log();
-        //$this->app['db'] = new Mysql();
+        $this->app['db'] = new Database\Mysql\QueryBuilder();
         $this->app['request'] = new Request();
         $this->app['router'] = new Router($this->app['path'], $this->app['request']);
         $this->app['session'] = new Session();
@@ -49,6 +49,16 @@ class Space
         $this->app['asset'] = new Asset();
         $this->app['layout'] = new Layout('frontend', new View('frontend.index'));
 
+        if ($execute) {
+            $this->execute();
+        }
+    }
+
+    /**
+     * execute
+     */
+    public function execute() : void
+    {
         $controllerName = !empty($this->app['router']->getRoute()['controller']) ? $this->app['router']->getRoute()['controller'] : null;
         $actionName = !empty($this->app['router']->getRoute()['action']) ? $this->app['router']->getRoute()['action'] : null;
 
@@ -56,14 +66,10 @@ class Space
             $controllerName = 'App\Http\Controllers\Errors\Error404Controller';
             $actionName = 'index';
         }
-
         $this->app['controller'] = new Controller($this, $controllerName, $actionName);
         $this->app['mail'] = new Mail();
 
-        if ($execute) {
-            echo $this->app['controller']->getResponseBody();
-            exit;
-        }
+        echo $this->app['controller']->getResponseBody();
     }
 
     /**
@@ -181,6 +187,15 @@ class Space
     public function getMail(): Mail
     {
         return $this->app['mail'];
+    }
+
+    /**
+     * getModel
+     * @return LibraryModel
+     */
+    public function getModel(): LibraryModel
+    {
+        return $this->app['model'];
     }
 
     /**

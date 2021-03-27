@@ -18,6 +18,6 @@ class BaseTest extends TestCase
      */
     protected function setUp() : void
     {
-        $this->app = new Space();
+        $this->app = new Space(false);
     }
 }

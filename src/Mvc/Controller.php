@@ -52,13 +52,13 @@ class Controller extends ControllerAbstract
     public function init(): self
     {
         if(!class_exists($this->controllerName)) {
-            exception('controller class does not exist:'.$this->controllerName, 500);
+            $this->app->getException()->throw('controller class does not exist:'.$this->controllerName, 500);
         }
 
         $controller = new $this->controllerName($this->app);
 
         if(!method_exists($controller, $this->actionName)) {
-            exception('action '.$this->actionName.'() not found in controller : '.$controllerName,500);
+            $this->app->getException()->throw('action '.$this->actionName.'() not found in controller : '.$this->controllerName,500);
         }
 
         $actionResponse = call_user_func_array(array($controller, $this->actionName), $this->params);

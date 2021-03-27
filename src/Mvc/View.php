@@ -30,7 +30,7 @@ class View extends ViewAbstract
         $viewFilename = $this->path.'/'.str_replace('.', '/', $this->viewName).'.php';
 
         if(!file_exists($viewFilename)) {
-            exception('view not found : '.$this->viewName, 500);
+            throw new \Exception('view not found : '.$this->viewName, 500);
         }
 
         require $viewFilename;

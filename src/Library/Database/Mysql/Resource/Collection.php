@@ -1,8 +1,8 @@
 <?php
 
-namespace SpaceMvc\Framework\Database\Mysql\Resource;
+namespace SpaceMvc\Framework\Library\Database\Mysql\Resource;
 
-use SpaceMvc\Framework\Database;
+use SpaceMvc\Framework\Library\Database;
 
 /**
  * Class Collection

@@ -11,23 +11,5 @@ use SpaceMvc\Framework\Library\Database\Mysql;
  */
 class Database extends DatabaseAbstract
 {
-    /** @var array $databases */
-    protected array $databases = [];
 
-    /**
-     * Database constructor.
-     */
-    public function __construct()
-    {
-        $this->databases['mysql'] = new Mysql();
-    }
-
-    /**
-     * getMysql
-     * @return mixed
-     */
-    public function getMysql()
-    {
-        return $this->databases['mysql'];
-    }
 }

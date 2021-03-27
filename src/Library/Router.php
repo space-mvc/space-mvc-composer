@@ -52,8 +52,10 @@ class Router extends RouterAbstract
             foreach($this->routes as $route) {
 
                 $uri = !empty($route['uri']) ? $route['uri'] : 'void';
+                $method = !empty($route['method']) ? $route['method'] : 'GET';
 
-                if($this->request->getUri() == $uri) {
+                if(strtolower($this->request->getUri()) == strtolower($uri) &&
+                    strtolower($this->request->getMethod()) == strtolower($method)) {
                     $this->route = $route;
                 }
             }

@@ -1,15 +1,16 @@
 <?php
 
-namespace SpaceMvc\Framework\Database\Mysql;
+namespace SpaceMvc\Framework\Library\Database\Mysql;
 
-use SpaceMvc\Framework\Database\Mysql\Resource\Collection;
-use SpaceMvc\Framework\Database\Mysql\Resource\Item;
+use SpaceMvc\Framework\Library\Database\Mysql;
+use SpaceMvc\Framework\Library\Database\Mysql\Resource\Collection;
+use SpaceMvc\Framework\Library\Database\Mysql\Resource\Item;
 
 /**
  * Class QueryBuilder
  * @package SpaceMvc\Database\Mysql
  */
-class QueryBuilder
+class QueryBuilder extends Mysql
 {
     /** @var string $query */
     protected string $query = '';

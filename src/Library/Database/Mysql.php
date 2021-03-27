@@ -1,15 +1,15 @@
 <?php
 
-namespace SpaceMvc\Framework\Database;
+namespace SpaceMvc\Framework\Library\Database;
 
-use SpaceMvc\Framework\Database\Mysql\QueryBuilder;
-use SpaceMvc\Framework\Database;
+use SpaceMvc\Framework\Library\Database\Mysql\QueryBuilder;
+use SpaceMvc\Framework\Library\Database;
 
 /**
  * Class Database
  * @package SpaceMvc\Framework
  */
-class Mysql extends QueryBuilder
+class Mysql extends Database
 {
     /** @var PDO $conn */
     protected $conn;
@@ -24,7 +24,7 @@ class Mysql extends QueryBuilder
     protected string $password = 'software';
 
     /** @var string $database */
-    protected string $database = 'crypto_exchange';
+    protected string $database = 'space_mvc';
 
     /**
      * Mysql constructor.
