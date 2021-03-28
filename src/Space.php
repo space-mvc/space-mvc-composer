@@ -17,7 +17,6 @@ use SpaceMvc\Framework\Library\Session;
 use SpaceMvc\Framework\Database\Mysql;
 
 use SpaceMvc\Framework\Mvc\Controller;
-use SpaceMvc\Framework\Mvc\Model;
 use SpaceMvc\Framework\Mvc\View;
 use SpaceMvc\Framework\Mvc\Layout;
 
@@ -41,7 +40,7 @@ class Space
         $this->app['env'] = new Env();
         $this->app['config'] = new Config();
         $this->app['log'] = new Log();
-        $this->app['db'] = new Database\Mysql\QueryBuilder();
+        $this->app['db'] = new Database($this->app['config']);
         $this->app['request'] = new Request();
         $this->app['router'] = new Router($this->app['path'], $this->app['request']);
         $this->app['session'] = new Session();
@@ -187,15 +186,6 @@ class Space
     public function getMail(): Mail
     {
         return $this->app['mail'];
-    }
-
-    /**
-     * getModel
-     * @return LibraryModel
-     */
-    public function getModel(): LibraryModel
-    {
-        return $this->app['model'];
     }
 
     /**
