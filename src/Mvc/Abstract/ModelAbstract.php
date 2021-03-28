@@ -10,46 +10,16 @@ use SpaceMvc\Framework\Database\Mysql\Resource\Item;
  */
 abstract class ModelAbstract
 {
-//    /** @var string $table */
-//    protected static string $table = '';
-//
-//    /** @var array $table */
-//    protected static array $fillable = [];
-//
-//    /** @var Item $item */
-//    protected static $item;
-//
-//    /**
-//     * getConn
-//     * @return mixed
-//     */
-//    abstract public static function getConn(): mixed;
-//
-//    /**
-//     * find
-//     * @param $id
-//     * @return mixed
-//     */
-//    abstract public static function find($id): mixed;
-//
-//    /**
-//     * select
-//     * @param array $fields
-//     * @return mixed
-//     */
-//    abstract public static function select($fields = []): mixed;
-//
-//    /**
-//     * insert
-//     * @param array $fields
-//     * @return mixed
-//     */
-//    abstract public static function insert(array $fields): mixed;
-//
-//    /**
-//     * update
-//     * @param array $fields
-//     * @return mixed
-//     */
-//    abstract public static function update(int $id, array $data): mixed;
+    /** @var string $table */
+    protected string $table = '';
+
+    /** @var array $table */
+    protected array $fillable = [];
+
+    /** @var array $attributes */
+    protected array $attributes = [];
+
+    /** @var bool $saved */
+    protected bool $saved = false;
+
 }

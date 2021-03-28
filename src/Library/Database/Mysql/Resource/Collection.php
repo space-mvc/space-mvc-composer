@@ -3,6 +3,7 @@
 namespace SpaceMvc\Framework\Library\Database\Mysql\Resource;
 
 use SpaceMvc\Framework\Library\Database;
+use SpaceMvc\Framework\Mvc\Model;
 
 /**
  * Class Collection
@@ -16,7 +17,7 @@ class Collection
     /**
      * @param Item $item
      */
-    public function addItem(Item $item)
+    public function addItem(Model $item)
     {
         $this->items[] = $item;
     }

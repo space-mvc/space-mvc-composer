@@ -2,6 +2,7 @@
 
 namespace SpaceMvc\Framework\Library\Database\Mysql;
 
+use App\Model\User;
 use SpaceMvc\Framework\Library\Database\Mysql;
 use SpaceMvc\Framework\Library\Database\Mysql\Resource\Collection;
 use SpaceMvc\Framework\Library\Database\Mysql\Resource\Item;
@@ -13,7 +14,56 @@ use SpaceMvc\Framework\Library\Database\Mysql\Resource\Item;
 class QueryBuilder extends Mysql
 {
     /** @var string $query */
-    protected string $query = '';
+    protected string $query;
+
+    /**
+     * QueryBuilder constructor.
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->query = 'SELECT * FROM users';
+    }
+
+    /**
+     * getQuery
+     * @return string
+     */
+    public function getQuery(): string
+    {
+        return trim(preg_replace('/\s+/', ' ', $this->query));
+    }
+
+    /**
+     * get
+     * @return Collection
+     */
+    public function get(): Collection
+    {
+        $results = $this->fetchAll($this->query);
+        $collection = new Collection();
+
+        if(!empty($results)) {
+            foreach($results as $result) {
+                $item = new User();
+                $item->setAttributes($result);
+                $collection->addItem($item);
+            }
+        }
+
+        return $collection;
+    }
+
+    /**
+     * with
+     * @param array $relationships
+     * @return $this
+     */
+    public function with(array $relationships): self
+    {
+        return $this;
+    }
 
     /**
      * select
@@ -21,7 +71,7 @@ class QueryBuilder extends Mysql
      * @param array $fields
      * @return $this
      */
-    public function select(string $table, array $fields = [])
+    public function select(string $table, array $fields = []): self
     {
         $this->query = 'SELECT ';
 
@@ -39,43 +89,45 @@ class QueryBuilder extends Mysql
     }
 
     /**
-     * get
-     * @return Collection
+     * where
+     * @param array $attributes
+     * @return $this
      */
-    public function get()
+    public function where(array $attributes = []): self
     {
-        $results = $this->fetchAll($this->query);
-        $collection = new Collection();
+        if(!empty($attributes)) {
 
-        if(!empty($results)) {
-            foreach($results as $result) {
-                $item = new Item();
-                $item->setAttributes($result);
-                $collection->addItem($item);
+            $this->query .= ' WHERE ';
+
+            foreach($attributes as $key => $value) {
+                $this->query .= addslashes($key)." = '".addslashes($value)."' AND ";
             }
+
+            $this->query = rtrim($this->query, " AND ");
         }
 
-        return $collection;
+        return $this;
     }
 
-    public function where()
+    /**
+     * whereLike
+     * @param array $attributes
+     * @return $this
+     */
+    public function whereLike(array $attributes = []): self
     {
+        if(!empty($attributes)) {
 
-    }
+            $this->query .= ' WHERE ';
 
-    public function whereLike()
-    {
+            foreach($attributes as $key => $value) {
+                $this->query .= addslashes($key)." LIKE '%".addslashes($value)."%' OR ";
+            }
 
-    }
+            $this->query = rtrim($this->query, " OR ");
+        }
 
-    public function whereIn()
-    {
-
-    }
-
-    public function leftJoin()
-    {
-
+        return $this;
     }
 
     public function join()
@@ -83,18 +135,46 @@ class QueryBuilder extends Mysql
 
     }
 
-    public function limit()
+    /**
+     * limit
+     * @param int $limit
+     * @return $this
+     */
+    public function limit(int $limit = 50): self
     {
-
+        $this->query.= ' LIMIT '.$limit;
+        return $this;
     }
 
-    public function skip()
+    /**
+     * skip
+     * @param int $offset
+     * @return $this
+     */
+    public function skip(int $offset = 0)
     {
-
+        $this->query.= ' OFFSET '.$offset;
+        return $this;
     }
 
-    public function orderBy()
+    /**
+     * orderBy
+     * @param array $attributes
+     * @return $this
+     */
+    public function orderBy(array $attributes = []): self
     {
+        if(!empty($attributes)) {
 
+            $this->query .= ' ORDER BY ';
+
+            foreach($attributes as $key => $direction) {
+                $this->query .= addslashes($key)." ".$direction.", ";
+            }
+
+            $this->query = rtrim($this->query, ", ");
+        }
+
+        return $this;
     }
 }
