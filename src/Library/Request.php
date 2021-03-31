@@ -2,6 +2,7 @@
 
 namespace SpaceMvc\Framework\Library;
 
+use App\Model\Profile;
 use SpaceMvc\Framework\Library\Abstract\RequestAbstract;
 
 /**
@@ -19,6 +20,11 @@ class Request extends RequestAbstract
         $this->method = !empty($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '';
         $this->get = !empty($_GET) ? $_GET : [];
         $this->post = !empty($_POST) ? $_POST : [];
+
+        if(!empty($this->post['_method'])) {
+            $this->method = $this->post['_method'];
+            unset($this->post['_method']);
+        }
     }
 
     /**
@@ -69,5 +75,15 @@ class Request extends RequestAbstract
         }
 
         return $this->post;
+    }
+
+    /**
+     * setGet
+     * @param string $key
+     * @param null $value
+     */
+    public function setGet(string $key, $value = null)
+    {
+        $this->get[$key] = $value;
     }
 }

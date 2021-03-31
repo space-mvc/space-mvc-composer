@@ -57,6 +57,8 @@ class Router extends RouterAbstract
                 $currentUri = $this->request->getUri();
                 $routeUri = preg_replace('/{.*}/i', '___wildcard___', $uri);
 
+                preg_match_all("|{.*}|U", $uri, $out, PREG_PATTERN_ORDER);
+
                 $exp1 = array_filter(explode('/', $currentUri));
                 $exp2 = array_filter(explode('/', $routeUri));
 
@@ -64,7 +66,13 @@ class Router extends RouterAbstract
                     foreach($exp1 as $k => $v) {
                         $check = !empty($exp2[$k]) ? $exp2[$k] : 'void';
                         if($check == '___wildcard___') {
+
                             $exp1[$k] = '___wildcard___';
+
+                            $key = !empty($out[0][0]) ? $out[0][0] : null;
+                            $key = str_replace('{', '', $key);
+                            $key = str_replace('}', '', $key);
+                            $this->request->setGet($key, $v);
                         }
                     }
                 }
