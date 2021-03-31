@@ -54,9 +54,25 @@ class Router extends RouterAbstract
                 $uri = !empty($route['uri']) ? $route['uri'] : 'void';
                 $method = !empty($route['method']) ? $route['method'] : 'GET';
 
-                if(strtolower($this->request->getUri()) == strtolower($uri) &&
+                $currentUri = $this->request->getUri();
+                $routeUri = preg_replace('/{.*}/i', '___wildcard___', $uri);
+
+                $exp1 = array_filter(explode('/', $currentUri));
+                $exp2 = array_filter(explode('/', $routeUri));
+
+                if(!empty($exp1)) {
+                    foreach($exp1 as $k => $v) {
+                        $check = !empty($exp2[$k]) ? $exp2[$k] : 'void';
+                        if($check == '___wildcard___') {
+                            $exp1[$k] = '___wildcard___';
+                        }
+                    }
+                }
+
+                if(empty(array_diff($exp1, $exp2)) &&
                     strtolower($this->request->getMethod()) == strtolower($method)) {
                     $this->route = $route;
+                    return $this;
                 }
             }
         }
