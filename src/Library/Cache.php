@@ -18,9 +18,11 @@ class Cache extends CacheAbstract
     {
         $config = $config->setConfig('app')->get()['cache']['redis'];
 
-        $this->cache = new \Redis();
-        $this->cache->connect('127.0.0.1', $config['port']);
-        $this->cache->select($config['database']);
+        if(class_exists('Redis')) {
+            $this->cache = new \Redis();
+            $this->cache->connect('127.0.0.1', $config['port']);
+            $this->cache->select($config['database']);
+        }
     }
 
     /**
