@@ -2,13 +2,13 @@
 
 namespace SpaceMvc\Framework\Library;
 
-use Phinx\Migration\AbstractMigration;
+use SpaceMvc\Framework\Library\Abstract\MigrationAbstract;
 
 /**
  * Class Migration
  * @package SpaceMvc\Framework\Library
  */
-class Migration extends AbstractMigration
+class Migration extends MigrationAbstract
 {
 
 }
