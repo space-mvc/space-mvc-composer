@@ -2,13 +2,13 @@
 
 namespace SpaceMvc\Framework\Library;
 
-use Phinx\Seed\AbstractSeed;
+use SpaceMvc\Framework\Library\Abstract\SeedAbstract;
 
 /**
  * Class Migration
  * @package SpaceMvc\Framework\Library
  */
-class Seed extends AbstractSeed
+class Seed extends SeedAbstract
 {
 
 }
